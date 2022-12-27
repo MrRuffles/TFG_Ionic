@@ -1,31 +1,34 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Log In</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form>
-    <ion-item lines="full">
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" required></ion-input>
-    </ion-item>
+  <form class="register-form">
+    <div class="form-group register_div">
+      <label position="floating">Email:</label>
+      <input class="form-control register-input" type="text" required />
+    </div>
+    <div class="form-group register_div">
+      <label position="floating">Password:</label>
+      <input class="form-control register-input" type="password" required />
+    </div>
     <ion-col>
       <ion-col>
-        <ion-button type="submit" color="danger" home="home" [routerLink]="['/home']" expand="block">Inica Sesion</ion-button>
-        <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
+        <ion-button type="submit" color="danger" home="home" [routerLink]="['/home']" expand="block">LogIn</ion-button>
+        <a [routerLink]="['/forgot-password']" class="small-text">Has olvidado la contraseña?</a>
       </ion-col>
       <hr>
       <ion-col>
-        <ion-button type="submit" color="primary" home="register" [routerLink]="['/register']" expand="block">Registrate</ion-button>
+        <ion-button class="button_1" type="submit" home="register" [routerLink]="['/register']" expand="block">Ir a Registro</ion-button>
       </ion-col>
     </ion-col>
   </form>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+
+  </ion-toolbar>
+</ion-footer>

@@ -1,9 +1,28 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Home</ion-title>
+<ion-header transparent="true">
+  <ion-toolbar mode="ios">
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<ion-button [routerLink]="['/form-incident']" color="primary" formIncident="form-incident">Crear Incidencia</ion-button>
+  <ion-fab slot="fixed" vertical="top" horizontal="center" [edge]="true">
+    <ion-fab-button [routerLink]="['/profile']">
+      <ion-icon class="profile_icon" name="person-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-grid style="margin: 4vh 0 0 0 !important;">
+    <ion-row>
+      <ion-label class="label_1_home">Incidencias en tu localidad:</ion-label>
+    </ion-row>
+    <ion-row class="list_incidencias">
+
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar mode="ios">
+    <ion-title>
+      <ion-button style="--border-radius: 5px; font-weight: bold; font-size: small;" [routerLink]="['/form-incident']" color="primary">Reportar Incidencia</ion-button>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

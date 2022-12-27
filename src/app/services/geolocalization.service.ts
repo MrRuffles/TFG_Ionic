@@ -8,7 +8,7 @@ import { Geolocation, Position } from '@capacitor/geolocation';
 export class GeolocalizationService {
 
   public address: string = "";
-  coords: any;
+  public coords: any;
   options: NativeGeocoderOptions = {
     useLocale: true,
     maxResults: 1

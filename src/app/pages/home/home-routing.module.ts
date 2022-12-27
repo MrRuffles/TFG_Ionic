@@ -1,3 +1,4 @@
+import { FormIncidentPage } from './../form-incident/form-incident.page';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

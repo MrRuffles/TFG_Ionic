@@ -1,27 +1,61 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+<ion-header>
+  <ion-toolbar mode="ios">
     <ion-title>
       Formulario
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
+  <form class="form-formulario">
+    <div class="image" style="margin: 0 0 2vh;">
+      <ion-label class="label_title">Imagenes</ion-label>
+      <ion-grid [fixed]="true" style="height: 20vh">
+        <ion-row>
+          <ion-col size="4" *ngFor="let photo of photoService.photos; index as position">
+            <ion-img style="height: 18vh; object-fit: fill;" [src]="photo.webviewPath"></ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="localization" style="margin: 2vh 0;">
+      <ion-label class="label_title">Localizacion</ion-label>
+      <br>
+      <ion-label class="label_title" style="font-size: smaller;">Calle:</ion-label><ion-label></ion-label>
+      <br>
+      <ion-label class="label_title" style="font-size: smaller;">Latitud:</ion-label><ion-label></ion-label>
+      <br>
+      <ion-label class="label_title" style="font-size: smaller;">Longitud:</ion-label><ion-label></ion-label>
+    </div>
+    <div class="description">
+      <ion-label class="label_title">Descripcion/Comentario:</ion-label>
+      <div style="display: flex; align-items: center;">
+        <ion-textarea [(ngModel)]="mytext" class="custom-textarea" rows="5" style="margin-right: 2vw;"></ion-textarea>
+        <ion-button (click)="startRecognition()" *ngIf="!recording" style="--border-radius: 50%; width: 52px; height: 52px;" fill="solid" color="primary">
+          <ion-icon name="mic"></ion-icon>
+        </ion-button>
+        <ion-button (click)="stopRecognition()" *ngIf="recording" style="--border-radius: 50%; width: 52px; height: 52px;" fill="solid" color="danger">
+          <ion-icon name="mic"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
-        <ion-img [src]="photo.webviewPath"></ion-img>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  </form>
 
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="addPhotoToGallery()">
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button [disabled]="photoService.photos.length === 3" (click)="addPhotoToGallery()">
       <ion-icon name="camera"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start" id="enviar">
+      <ion-button fill="solid" style=" font-weight: bold; font-size: small;" color="primary">Enviar</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" id="volver">
+      <ion-button fill="solid" style=" font-weight: bold; font-size: small;" color="primary" [routerLink]="['/home']">Volver</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

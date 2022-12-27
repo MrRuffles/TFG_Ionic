@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { DatabaseService } from 'src/app/database.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(public database: DatabaseService) { }
 
   ngOnInit() {
+    //this.getIncidencias();
+  }
+
+  getIncidencias(){
+    var location:string = "";
+    this.database.getIncidenciasbyLocation(location)
   }
 
 }

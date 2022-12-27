@@ -27,6 +27,36 @@ export class DatabaseService {
 
     return true;
   }
+
+  public async addNewUser(name:string, last:string, pass:string, reppass:string, email:string) {
+
+    //await this.client.connect();
+
+    if(pass == reppass){
+
+      var salt = email.split('@')[0];
+
+      var hashedPass = this.hashPasword(pass,salt);
+
+
+      //const db = this.client.db(this.database);
+
+      //TODO: Insert new user to User Document BSON.
+
+    }
+
+    //this.client.close();
+
+  }
+
+  public async getIncidenciasbyLocation(location:string){
+    //await this.client.connect();
+    //const db = this.client.db(this.database);
+
+    //TODO: Get BSON of the incidencias meterlas en un objeto.
+
+  }
+
 }
 
 

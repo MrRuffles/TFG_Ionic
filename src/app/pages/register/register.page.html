@@ -3,32 +3,45 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Register</ion-title>
+    <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form>
-    <ion-item lines="full">
-      <ion-label position="floating">First name</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Last name</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" required></ion-input>
-    </ion-item>
+  <form class="register-form">
+    <div class="form-group register_div">
+      <label>Nombre Completo:</label>
+      <input class="form-control register-input" type="text" required />
+    </div>
+    <div class="form-group register_div">
+      <label>Email:</label>
+      <input class="form-control register-input" type="email" required />
+    </div>
+    <div class="form-group register_div">
+      <label >Contraseña:</label>
+      <input class="form-control register-input" type="password" required />
+    </div>
+    <div class="form-group register_div">
+      <label >Confirmar Contraseña:</label>
+      <input class="form-control register-input" type="password" required />
+    </div>
+    <div class="form-group register_div">
+      <label >Teléfono:</label>
+      <input class="form-control register-input" type="text" required />
+    </div>
+    <div class="form-group register_div">
+      <label >Localidad:</label>
+      <input class="form-control register-input" type="text" required />
+    </div>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="primary" expand="block">Sign Up</ion-button>
+        <ion-button class="button_1 register_button" type="submit" expand="block">Sign Up</ion-button>
       </ion-col>
     </ion-row>
   </form>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-footer>
