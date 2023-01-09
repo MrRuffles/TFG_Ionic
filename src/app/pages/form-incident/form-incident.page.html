@@ -21,16 +21,16 @@
     <div class="localization" style="margin: 2vh 0;">
       <ion-label class="label_title">Localizacion</ion-label>
       <br>
-      <ion-label class="label_title" style="font-size: smaller;">Calle:</ion-label><ion-label></ion-label>
+      <ion-label class="label_title" style="font-size: smaller;">Calle:</ion-label><ion-label>{{geoService.address}}</ion-label>
       <br>
-      <ion-label class="label_title" style="font-size: smaller;">Latitud:</ion-label><ion-label></ion-label>
+      <ion-label class="label_title" style="font-size: smaller;">Latitud:</ion-label><ion-label>{{geoService.coords.coords.latitude}}</ion-label>
       <br>
-      <ion-label class="label_title" style="font-size: smaller;">Longitud:</ion-label><ion-label></ion-label>
+      <ion-label class="label_title" style="font-size: smaller;">Longitud:</ion-label><ion-label>{{geoService.coords.coords.longitude}}</ion-label>
     </div>
     <div class="description">
       <ion-label class="label_title">Descripcion/Comentario:</ion-label>
       <div style="display: flex; align-items: center;">
-        <ion-textarea [(ngModel)]="mytext" class="custom-textarea" rows="5" style="margin-right: 2vw;"></ion-textarea>
+        <ion-input [(ngModel)]="mytext" class="custom-textarea" rows="5" style="margin-right: 2vw;"></ion-input>
         <ion-button (click)="startRecognition()" *ngIf="!recording" style="--border-radius: 50%; width: 52px; height: 52px;" fill="solid" color="primary">
           <ion-icon name="mic"></ion-icon>
         </ion-button>

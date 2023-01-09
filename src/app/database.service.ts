@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { appendFile } from 'fs';
 //import { MongoClient, ServerApiVersion } from 'mongodb';
+import * as Realm from "realm-web";
 @Injectable({
   providedIn: 'root'
 })
@@ -8,53 +10,60 @@ export class DatabaseService {
   //TODO: Import new module to hash.
   constructor() { }
 
-  public uri = "mongodb+srv://tfg2022:kxthw56GXxHyoNvc@tfg.uikys.mongodb.net/?retryWrites=true&w=majority";
-  //public client = new MongoClient(this.uri, {serverApi:ServerApiVersion.v1});
-  public database = "TFG";
+  app = new Realm.App({ id: "tfg-app-zsokw" });
 
-  public hashPasword(pass:string, salt:string){
-    var hashed;
+  public async addNewUser(name:string, password:string, reppass:string, email:string, tel:string, loc:string) {
 
-    //TODO: Code of hashing.
+    if(reppass == password){
+      try{
+        await this.app.emailPasswordAuth.registerUser({email, password });
 
-    return hashed;
-  }
+        var user = await this.app.logIn(Realm.Credentials.emailPassword(email,password));
 
-  public verifyPassword(pass:string, salt:string, hash:string){
+        const mongodb = this.app.currentUser?.mongoClient("mongodb-atlas");
+        const collection = mongodb?.db("TFG").collection("profile");
 
+        const resp = await collection?.insertOne(
+          { userID: this.app.currentUser?.id, name: name, telefono: tel, localidad: loc}
+        );
 
-    //TODO: Code of verify hash.
+        return user;
 
-    return true;
-  }
-
-  public async addNewUser(name:string, last:string, pass:string, reppass:string, email:string) {
-
-    //await this.client.connect();
-
-    if(pass == reppass){
-
-      var salt = email.split('@')[0];
-
-      var hashedPass = this.hashPasword(pass,salt);
-
-
-      //const db = this.client.db(this.database);
-
-      //TODO: Insert new user to User Document BSON.
-
+      }catch(error){
+        console.log("No se ha podido Registar el usuario, prueba de nuevo.");
+        return null;
+      }
     }
 
-    //this.client.close();
-
+    return null;
   }
 
   public async getIncidenciasbyLocation(location:string){
-    //await this.client.connect();
-    //const db = this.client.db(this.database);
 
-    //TODO: Get BSON of the incidencias meterlas en un objeto.
+    try{
+      const mongodb = this.app.currentUser?.mongoClient("mongodb-atlas");
+      const collection = mongodb?.db("TFG").collection("incidencia");
 
+      const resp = await collection?.find({localidad: location});
+
+      return resp;
+    }catch(error){
+      console.log("No se ha podido encontrar incidencias, prueba de nuevo.");
+      return null;
+    }
+  }
+
+  public async readUser(email:string, pass:string){
+    var credentials = Realm.Credentials.emailPassword(email,pass);
+
+    console.log(credentials);
+    try{
+      var user = await this.app.logIn(credentials);
+      return user;
+    }catch(err){
+      console.log("No se ha podido Iniciar Sesion, prueba de nuevo.");
+      return null;
+    }
   }
 
 }

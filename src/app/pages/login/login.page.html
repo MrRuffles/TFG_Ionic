@@ -8,15 +8,15 @@
   <form class="register-form">
     <div class="form-group register_div">
       <label position="floating">Email:</label>
-      <input class="form-control register-input" type="text" required />
+      <input [(ngModel)]="emaillog" name="login" class="form-control register-input" type="text" required />
     </div>
     <div class="form-group register_div">
       <label position="floating">Password:</label>
-      <input class="form-control register-input" type="password" required />
+      <input [(ngModel)]="pass" name="password" class="form-control register-input" type="password"  required />
     </div>
     <ion-col>
       <ion-col>
-        <ion-button type="submit" color="danger" home="home" [routerLink]="['/home']" expand="block">LogIn</ion-button>
+        <ion-button type="submit" color="danger" home="home" (click)="login(emaillog,pass)" expand="block">LogIn</ion-button>
         <a [routerLink]="['/forgot-password']" class="small-text">Has olvidado la contraseña?</a>
       </ion-col>
       <hr>

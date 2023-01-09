@@ -1,7 +1,9 @@
+import { AppComponent } from './../../app.component';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PhotoService } from 'src/app/services/photo.service';
 import { GeolocalizationService } from 'src/app/services/geolocalization.service';
 import { SpeechRecognition } from '@capacitor-community/speech-recognition';
+import { DatabaseService } from 'src/app/database.service';
 @Component({
   selector: 'app-form-incident',
   templateUrl: './form-incident.page.html',
@@ -39,6 +41,7 @@ export class FormIncidentPage implements OnInit {
     });
 
     SpeechRecognition.addListener('partialResults', (data:any) => {
+      console.log('partial was fired: ', data.value);
       if(data.value && data.value.lenght > 0){
         this.mytext = data.value[0];
         this.changeDetectorRef.detectChanges();
