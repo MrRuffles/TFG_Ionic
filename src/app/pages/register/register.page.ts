@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { DatabaseService } from './../../database.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,14 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(public database: DatabaseService) { }
+  namereg:string="";
+  passreg:string="";
+  emailreg:string="";
+  telreg:string="";
+  locreg:string="";
+  reppass:string="";
+
+  constructor(public database: DatabaseService, public router:Router) { }
 
   ngOnInit() {
   }
 
-  public async register(name:string, last:string, pass:string, reppass:string, email:string) {
+  public async register(name:string, pass:string, reppass:string, email:string, telephone:string, location:string) {
 
-    this.database.addNewUser(name,last,pass,reppass,email);
+    var user = await this.database.addNewUser(name,pass,reppass,email, telephone, location);
+    if(user) this.router.navigate(['/home']);
 
   }
 

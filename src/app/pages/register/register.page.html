@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar mode="ios">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -11,37 +11,37 @@
   <form class="register-form">
     <div class="form-group register_div">
       <label>Nombre Completo:</label>
-      <input class="form-control register-input" type="text" required />
+      <input [(ngModel)]="namereg" name="namereg" class="form-control register-input" type="text" required />
     </div>
     <div class="form-group register_div">
       <label>Email:</label>
-      <input class="form-control register-input" type="email" required />
+      <input [(ngModel)]="emailreg" name="emailreg" class="form-control register-input" type="email" required />
     </div>
     <div class="form-group register_div">
       <label >Contraseña:</label>
-      <input class="form-control register-input" type="password" required />
+      <input [(ngModel)]="passreg" name="passreg" class="form-control register-input" type="password" required />
     </div>
     <div class="form-group register_div">
       <label >Confirmar Contraseña:</label>
-      <input class="form-control register-input" type="password" required />
+      <input [(ngModel)]="reppass" name="reppass" class="form-control register-input" type="password" required />
     </div>
     <div class="form-group register_div">
       <label >Teléfono:</label>
-      <input class="form-control register-input" type="text" required />
+      <input [(ngModel)]="telreg" name="telreg" class="form-control register-input" type="text" required />
     </div>
     <div class="form-group register_div">
       <label >Localidad:</label>
-      <input class="form-control register-input" type="text" required />
+      <input [(ngModel)]="locreg" name="locreg" class="form-control register-input" type="text" required />
     </div>
     <ion-row>
       <ion-col>
-        <ion-button class="button_1 register_button" type="submit" expand="block">Sign Up</ion-button>
+        <ion-button class="button_1 register_button" (click)="register(namereg,passreg,reppass,emailreg,telreg,locreg)" type="submit" expand="block">Registrar</ion-button>
       </ion-col>
     </ion-row>
   </form>
 </ion-content>
 
-<ion-footer>
+<ion-footer mode="ios">
   <ion-toolbar>
   </ion-toolbar>
 </ion-footer>

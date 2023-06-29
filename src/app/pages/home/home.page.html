@@ -9,20 +9,35 @@
       <ion-icon class="profile_icon" name="person-circle"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-grid style="margin: 4vh 0 0 0 !important;">
-    <ion-row>
+  <ion-list style="margin: 5% 0;">
+    <ion-list-header>
       <ion-label class="label_1_home">Incidencias en tu localidad:</ion-label>
-    </ion-row>
-    <ion-row class="list_incidencias">
-
-    </ion-row>
-  </ion-grid>
+    </ion-list-header>
+    <div style=" height: 100vh; overflow-y: scroll;">
+      <ion-item *ngFor="let incidencia of incidencias;" style="--background: #82C3FF; margin:2%;">
+        <div class="col">
+          <ion-row>
+            <ion-label>Titulo: </ion-label>
+            <ion-label style="margin-left: 3vw;">{{incidencia.titulo}}</ion-label>
+          </ion-row>
+          <ion-row style="margin-left: 3vw;">
+            <ion-label>Direccion: </ion-label>
+            <ion-label style="margin-left: 3vw;">{{incidencia.direccion}}</ion-label>
+          </ion-row>
+          <ion-row style="margin-left: 3vw;">
+            <ion-label>Descripcion: </ion-label>
+            <ion-label style="margin-left: 3vw;">{{incidencia.descripcion}}</ion-label>
+          </ion-row>
+        </div>
+      </ion-item>
+    </div>
+  </ion-list>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar mode="ios">
     <ion-title>
-      <ion-button style="--border-radius: 5px; font-weight: bold; font-size: small;" [routerLink]="['/form-incident']" color="primary">Reportar Incidencia</ion-button>
+      <ion-button style="--border-radius: 5px; font-size: small;" class="button_2" [routerLink]="['/form-incident']" >Reportar Incidencia</ion-button>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

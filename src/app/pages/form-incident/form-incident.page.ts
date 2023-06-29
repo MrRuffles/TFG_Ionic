@@ -4,6 +4,7 @@ import { PhotoService } from 'src/app/services/photo.service';
 import { GeolocalizationService } from 'src/app/services/geolocalization.service';
 import { SpeechRecognition } from '@capacitor-community/speech-recognition';
 import { DatabaseService } from 'src/app/database.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-form-incident',
   templateUrl: './form-incident.page.html',
@@ -11,18 +12,20 @@ import { DatabaseService } from 'src/app/database.service';
 })
 export class FormIncidentPage implements OnInit {
   recording = false;
-  mytext ="";
+  mytext:string ="";
+  tituloIn:string = "";
 
-  constructor(public photoService: PhotoService, public geoService: GeolocalizationService, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(public photoService: PhotoService, public geoService: GeolocalizationService, private changeDetectorRef: ChangeDetectorRef, public database: DatabaseService, public router:Router) {
     SpeechRecognition.requestPermission();
    }
 
   ngOnInit() {
-    this.addGeoLocation();
+
   }
 
   addPhotoToGallery() {
     this.photoService.addNewToGallery();
+    this.addGeoLocation();
   }
 
   addGeoLocation() {
@@ -54,5 +57,45 @@ export class FormIncidentPage implements OnInit {
   this.recording = false;
   await SpeechRecognition.stop();
  }
+
+ public async subirIncidencia(titulo:string, des:string){
+
+  var img1: string | undefined  = "";
+  var img2: string | undefined = "";
+  var img3: string | undefined = "";
+  var cont = 1;
+
+  this.photoService.photos.forEach(photo => {
+      switch (cont){
+        case 1:
+          img1 = photo.base64;
+          break;
+        case 2:
+          img2 = photo.base64;
+          break;
+        case 3:
+          img3 = photo.base64;
+          break;
+      }
+      cont++;
+  });
+
+  var loc = this.geoService.locality;
+  var lat = this.geoService.latitude;
+  var long = this.geoService.longitude;
+  var add = this.geoService.address;
+
+  var insert = await this.database.addIncidencia(titulo,des,add,loc,lat,long,img1,img2,img3);
+  if(insert) {
+    this.tituloIn = "";
+    this.photoService.photos = [];
+    this.mytext = "";
+    this.geoService.address = "";
+    this.geoService.latitude = "";
+    this.geoService.longitude = "";
+
+    this.router.navigate(["/home"]);
+  }
+}
 
 }

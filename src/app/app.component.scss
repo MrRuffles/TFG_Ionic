@@ -1,10 +1,40 @@
-.button_1 {
-  color:black;
+ion-button , .button_1 {
+  --color:black;
   font-weight: bold;
+  --background: #42A4FF;
+}
+
+ion-button,  .button_2 {
+  --color:white;
+  font-weight: bold;
+  --background: #42A4FF;
+}
+
+ion-button,.button_3 {
+  --color:black;
+  font-weight: bold;
+  --background: #82C3FF;
+}
+
+ion-button, .button_4 {
+  --color:white;
+  font-weight: bold;
+  --background: #82C3FF;
+}
+
+ion-button, .button_5 {
+  --color:black;
+  font-weight: bold;
+  --background: #3894FF;
 }
 
 .label_title{
   font-weight: bold;
   font-size: small;
+}
+
+ion-toolbar, .head, ion-footer {
+  --background: #82C3FF;
+  --color:white;
 }
 

@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header class="head" mode="ios">
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-title >Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,18 +16,17 @@
     </div>
     <ion-col>
       <ion-col>
-        <ion-button type="submit" color="danger" home="home" (click)="login(emaillog,pass)" expand="block">LogIn</ion-button>
-        <a [routerLink]="['/forgot-password']" class="small-text">Has olvidado la contraseña?</a>
+        <ion-button class="button_3" type="submit" home="home" (click)="login(emaillog,pass)" expand="block">LogIn</ion-button>
       </ion-col>
       <hr>
       <ion-col>
-        <ion-button class="button_1" type="submit" home="register" [routerLink]="['/register']" expand="block">Ir a Registro</ion-button>
+        <ion-button class="button_1" home="register" [routerLink]="['/register']" expand="block">Ir a Registro</ion-button>
       </ion-col>
     </ion-col>
   </form>
 </ion-content>
 
-<ion-footer>
+<ion-footer class="head" mode="ios">
   <ion-toolbar>
 
   </ion-toolbar>
